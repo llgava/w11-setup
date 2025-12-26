@@ -49,7 +49,16 @@ if ($packages -contains "OpenJS.NodeJS.LTS") {
 # Check if NodeJS are installed and try to apply configured theme
 if ($packages -contains "JanDeDobbeleer.OhMyPosh" -and $ohMyPoshTheme) {
   Write-Host "$info Oh My Posh found! Installing theme: $ohMyPoshTheme"
-  Start-Sleep -Seconds 2
 
-  # TODO
+  # Initialize Oh My Posi profile file
+  new-item -type file -path $PROFILE -force
+  $ProfilePath = $PROFILE
+
+  $ProfileScript = @'
+oh-my-posh init pwsh | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\spaceship.omp.json" | Invoke-Expression
+Import-Module -Name Terminal-Icons
+'@
+
+  Add-Content -Path $ProfilePath -Value $ProfileScript
 }
