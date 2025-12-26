@@ -1,0 +1,21 @@
+{
+  "packages": [
+    "DenoLand.Deno",
+    "OpenJS.NodeJS.LTS",
+    "JanDeDobbeleer.OhMyPosh",
+    "Microsoft.VisualStudioCode",
+    "JetBrains.IntelliJIDEA.Community",
+    "Git.Git",
+    "JannisX11.Blockbench",
+    "Anysphere.Cursor",
+    "JanDeDobbeleer.OhMyPosh",
+    "Figma.Figma"
+  ],
+  "npmGlobalPackages": [
+    "typescript",
+    "yarn",
+    "pnpm",
+    "jest"
+  ],
+  "ohMyPoshTheme": "spaceship"
+}

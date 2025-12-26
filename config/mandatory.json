@@ -1,0 +1,11 @@
+{
+  "packages": [
+    "Mojang.MinecraftLauncher",
+    "Microsoft.WindowsTerminal",
+    "Valve.Steam",
+    "Spotify.Spotify",
+    "Notion.Notion",
+    "Vivaldi.Vivaldi",
+    "LinearOrbit.Linear"
+  ]
+}

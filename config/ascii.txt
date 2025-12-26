@@ -1,0 +1,8 @@
++==============================================================================+
+|                                                                              |
+| Script Name	: Windows 11 Setup                                             |
+| Description	: A basic script to setup my common enviroments.               |
+| Args          : -withDebloat                                                 |
+| Author        : Leonardo Gava                                                |
+|                                                                              |
++==============================================================================+
