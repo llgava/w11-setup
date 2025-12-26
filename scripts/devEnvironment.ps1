@@ -1,11 +1,13 @@
 #!/usr/bin/env pwsh
-. "$PSScriptRoot\common.ps1"
+# Carregar common.ps1 do GitHub
+$commonScript = Invoke-RestMethod -Uri "https://raw.githubusercontent.com/llgava/w11-setup/refs/heads/main/scripts/common.ps1"
+. ([scriptblock]::Create($commonScript))
 
 Write-Host ""
 Write-Host "Running development packages instalation..."
 
-$configPath = "$PSScriptRoot\..\config\development.json"
-$config = Get-Content -Path $configPath | ConvertFrom-Json
+# Baixar configuração do GitHub
+$config = Invoke-RestMethod -Uri "$script:baseURL/config/development.json"
 $packages = $config.packages
 $npmGlobalPackages = $config.npmGlobalPackages
 $ohMyPoshTheme = $config.ohMyPoshTheme

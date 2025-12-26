@@ -4,6 +4,9 @@ param(
   [switch]$withDebloat
 )
 
+# Base URL do repositório GitHub
+$baseURL = "https://raw.githubusercontent.com/llgava/w11-setup/refs/heads/main"
+
 $options = @(
   "Basic       `e[90m * Only common apps will be install`e[37m",
   "Development `e[90m * Development apps and tools will be install`e[37m"
@@ -11,10 +14,15 @@ $options = @(
 $selectedIndex = 0
 
 function Render-ASCII {
-  if (Test-Path ".\config\ascii.txt") {
-    Get-Content ".\config\ascii.txt" | ForEach-Object { Write-Host $_ }
+  try {
+    $asciiContent = Invoke-RestMethod -Uri "$baseURL/config/ascii.txt"
+    if ($asciiContent -is [array]) {
+      $asciiContent | ForEach-Object { Write-Host $_ }
+    } else {
+      Write-Host $asciiContent
+    }
     Write-Host "`n"  # Linha em branco depois do ASCII
-  } else {
+  } catch {
     Write-Host "Arquivo ascii.txt não encontrado.`n" -ForegroundColor Yellow
   }
 }
@@ -50,16 +58,20 @@ while ($true) {
   }
 }
 
+# Baixar e executar scripts do GitHub
 if ($selectedIndex -eq 1) {
-  & ".\scripts\devEnvironment.ps1"
+  $devScript = Invoke-RestMethod -Uri "$baseURL/scripts/devEnvironment.ps1"
+  & ([scriptblock]::Create($devScript))
 }
 
-& ".\scripts\mandatory.ps1"
+$mandatoryScript = Invoke-RestMethod -Uri "$baseURL/scripts/mandatory.ps1"
+& ([scriptblock]::Create($mandatoryScript))
 
 if ($withDebloat) {
   Write-Host "[info]" -NoNewline -ForegroundColor Yellow
   Write-Host " Executing debloat script..." -ForegroundColor White
   & ([scriptblock]::Create((Invoke-RestMethod "https://debloat.raphi.re/"))) -RunDefaults -Silent
 
+  $done = "`e[32m[done]`e[37m"
   Write-Host "$done Debloat script executed."
 }
