@@ -74,7 +74,3 @@ if ($withDebloat) {
   $done = "`e[32m[done]`e[37m"
   Write-Host "$done Debloat script executed."
 }
-
-Write-Host "[info]" -NoNewline -ForegroundColor Yellow
-Write-Host " Executing NVMe performance script..." -ForegroundColor White
-reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides /v 1176759950 /t REG_DWORD /d 1 /f

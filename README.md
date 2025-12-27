@@ -9,7 +9,7 @@ irm "https://raw.githubusercontent.com/llgava/w11-setup/refs/heads/main/install.
 
 ### Passing `-withDebloat` argument.
 ```pwsh
-irm "https://raw.githubusercontent.com/llgava/w11-setup/refs/heads/main/install.ps1" -withDebloat | iex
+$script = irm "https://raw.githubusercontent.com/llgava/w11-setup/refs/heads/main/install.ps1"; & ([scriptblock]::Create($script)) -withDebloat
 ```
 
 ---
