@@ -1,12 +1,13 @@
 #!/usr/bin/env pwsh
-# Carregar common.ps1 do GitHub
+
+# common.ps1
 $commonScript = Invoke-RestMethod -Uri "https://raw.githubusercontent.com/llgava/w11-setup/refs/heads/main/scripts/common.ps1"
 . ([scriptblock]::Create($commonScript))
 
 Write-Host ""
 Write-Host "Running mandatory packages instalation..."
 
-# Baixar configuração do GitHub
+# Download mandatory packages.
 $config = Invoke-RestMethod -Uri "$script:baseURL/config/mandatory.json"
 $packages = $config.packages
 

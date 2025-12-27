@@ -1,6 +1,5 @@
 {
   "packages": [
-    "Mojang.MinecraftLauncher",
     "Microsoft.WindowsTerminal",
     "Valve.Steam",
     "Spotify.Spotify",

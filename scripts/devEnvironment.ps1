@@ -1,12 +1,13 @@
 #!/usr/bin/env pwsh
-# Carregar common.ps1 do GitHub
+
+# common.ps1
 $commonScript = Invoke-RestMethod -Uri "https://raw.githubusercontent.com/llgava/w11-setup/refs/heads/main/scripts/common.ps1"
 . ([scriptblock]::Create($commonScript))
 
 Write-Host ""
 Write-Host "Running development packages instalation..."
 
-# Baixar configuração do GitHub
+# Download development packages.
 $config = Invoke-RestMethod -Uri "$script:baseURL/config/development.json"
 $packages = $config.packages
 $npmGlobalPackages = $config.npmGlobalPackages
@@ -46,11 +47,11 @@ if ($packages -contains "OpenJS.NodeJS.LTS") {
   Write-Host "$done Global npm packages installed!"
 }
 
-# Check if NodeJS are installed and try to apply configured theme
+# Check if OhMyPosh are installed and try to apply configured theme
 if ($packages -contains "JanDeDobbeleer.OhMyPosh" -and $ohMyPoshTheme) {
   Write-Host "$info Oh My Posh found! Installing theme: $ohMyPoshTheme"
 
-  # Initialize Oh My Posi profile file
+  # Initialize Oh My Posh profile file
   new-item -type file -path $PROFILE -force
   $ProfilePath = $PROFILE
 

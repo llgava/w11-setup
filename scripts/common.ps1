@@ -1,9 +1,8 @@
-# Variáveis de cores ANSI
 $script:info = "`e[33m[info]`e[37m"
 $script:done = "`e[32m[done]`e[37m"
 $script:baseURL = "https://raw.githubusercontent.com/llgava/w11-setup/refs/heads/main"
 
-# Função para exibir barra de progresso de instalação de pacotes
+# Progress Bar instalation
 function ProgressBar-PackageInstalation {
   param(
     [string]$label,

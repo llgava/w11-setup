@@ -4,7 +4,6 @@ param(
   [switch]$withDebloat
 )
 
-# Base URL do repositório GitHub
 $baseURL = "https://raw.githubusercontent.com/llgava/w11-setup/refs/heads/main"
 
 $options = @(
@@ -58,7 +57,7 @@ while ($true) {
   }
 }
 
-# Baixar e executar scripts do GitHub
+# Download and execute scripts from GitHub
 if ($selectedIndex -eq 1) {
   $devScript = Invoke-RestMethod -Uri "$baseURL/scripts/devEnvironment.ps1"
   & ([scriptblock]::Create($devScript))
@@ -75,3 +74,7 @@ if ($withDebloat) {
   $done = "`e[32m[done]`e[37m"
   Write-Host "$done Debloat script executed."
 }
+
+Write-Host "[info]" -NoNewline -ForegroundColor Yellow
+Write-Host " Executing NVMe performance script..." -ForegroundColor White
+reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides /v 1176759950 /t REG_DWORD /d 1 /f
